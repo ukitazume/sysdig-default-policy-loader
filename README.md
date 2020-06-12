@@ -9,7 +9,7 @@ this script loads Default Sysdig Secure Policy and format for Terraform file
 
 Get the policy.tf
 
-`SYSDIG_API_KEY=YOUR_APIKEY python mappying_terraform.py mappying_terraform.py > policy.tf`
+`SYSDIG_API_KEY=YOUR_APIKEY python mappying_terraform.py > policy.tf`
 
 Edit the file as you like
 
