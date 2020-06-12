@@ -1,0 +1,36 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    # Runs a single command using the runners shell
+    - name: Run the script
+      run: python mappying_terraform.py > example/policy.tf
+
+    # Runs a set of commands using the runners shell
+    - name: Run terraform validate and plan to check the format
+      run: |
+        wget https://github.com/draios/terraform-provider-sysdig/releases/download/v0.3.0/terraform-provider-sysdig-linux-amd64.tar.gz
+        tar -xvf terraform-provider-sysdig-linux-amd64.tar.gz
+        mkdir -p .terraform/plugins/linux_amd64 && mv terraform-provider-sysdig_v0.3.0 .terraform/plugins/linux_amd64
+        terraform init
+        terraform validate
