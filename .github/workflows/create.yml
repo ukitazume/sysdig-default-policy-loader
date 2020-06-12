@@ -38,6 +38,7 @@ jobs:
     - name: 'Install terraform-provider-sysdig'
       run: |
         wget https://github.com/draios/terraform-provider-sysdig/releases/download/v0.3.0/terraform-provider-sysdig-linux-amd64.tar.gz
+        tar -xvf terraform-provider-sysdig-linux-amd64.tar.gz
         mkdir -p ${GITHUB_WORKSPACE}/${tf_working_dir}/.terraform/plugins/linux_amd64/
         mv terraform-provider-sysdig_v0.3.0 ${GITHUB_WORKSPACE}/${tf_working_dir}/.terraform/plugins/linux_amd64/
     - name: Run terraform validate and plan to check the format
