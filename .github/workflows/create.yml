@@ -33,11 +33,12 @@ jobs:
         SYSDIG_API_KEY: ${{ secrets.SYSDIG_API_KEY }}
 
     # Runs a set of commands using the runners shell
-    - name: Init terraform
+    - name: 'Install terraform-provider-sysdig'
       run: |
         mkdir -p ${GITHUB_WORKSPACE}/${tf_working_dir}/.terraform/plugins/linux_amd64/
         cd ${GITHUB_WORKSPACE}/${tf_working_dir}/.terraform/plugins/linux_amd64/
-        curl -L https://github.com/draios/terraform-provider-sysdig/releases/download/v0.3.0/terraform-provider-sysdig-linux-amd64.tar.gz | tar xz terraform-provider-sysdig_v0.3.0
+        curl -L https://github.com/draios/terraform-provider-sysdig/releases/download/v0.3.0/terraform-provider-sysdig-linux-amd64.tar.gz
+        tar -xvf terraform-provider-sysdig-linux-amd64.tar.gz
     - name: Run terraform validate and plan to check the format
       run: |
         terraform init
