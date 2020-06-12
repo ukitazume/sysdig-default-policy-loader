@@ -37,7 +37,6 @@ jobs:
       run: |
         cd example
         wget https://github.com/draios/terraform-provider-sysdig/releases/download/v0.3.0/terraform-provider-sysdig-linux-amd64.tar.gz
-        tar -xvf terraform-provider-sysdig-linux-amd64.tar.gz
-        mkdir -p .terraform/plugins/linux_amd64 && mv terraform-provider-sysdig_v0.3.0 .terraform/plugins/linux_amd64
+        tar -xvf terraform-provider-sysdig-linux-amd64.tar.gz && mkdir -p .terraform/plugins/linux_amd64 && mv terraform-provider-sysdig_v0.3.0 .terraform/plugins/linux_amd64/
         terraform init
         terraform validate
