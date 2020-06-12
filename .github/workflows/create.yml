@@ -21,11 +21,13 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-    - uses: hashicorp/setup-terraform@master
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: "0.12.26"
     - uses: actions/setup-python@v2
       with:
         python-version: '3.7'
-
+        terraform_wrapper: false
     # Runs a single command using the runners shell
     - name: Run the script
       run: python mappying_terraform.py | tee example/policy.tf
@@ -36,11 +38,11 @@ jobs:
     - name: 'Install terraform-provider-sysdig'
       run: |
         wget https://github.com/draios/terraform-provider-sysdig/releases/download/v0.3.0/terraform-provider-sysdig-linux-amd64.tar.gz
-        tar -xvf terraform-provider-sysdig-linux-amd64.tar.gz
-        mv terraform-provider-sysdig_v0.3.0 ${TERRAFORM_CLI_PATH}
+        mkdir -p ${GITHUB_WORKSPACE}/${tf_working_dir}/.terraform/plugins/linux_amd64/
+        mv terraform-provider-sysdig_v0.3.0 ${GITHUB_WORKSPACE}/${tf_working_dir}/.terraform/plugins/linux_amd64/
     - name: Run terraform validate and plan to check the format
       run: |
         terraform providers
-        terraform init -plugin-dir=${TERRAFORM_CLI_PATH}
+        terraform init -plugin-dir=${GITHUB_WORKSPACE}/${tf_working_dir}/.terraform/plugins/linux_amd64/
         terraform validate
       working-directory: example
