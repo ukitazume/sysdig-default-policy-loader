@@ -1,0 +1,1 @@
+# sysdig-default-policy-loader
