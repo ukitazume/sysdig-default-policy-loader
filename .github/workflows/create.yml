@@ -29,6 +29,8 @@ jobs:
     # Runs a single command using the runners shell
     - name: Run the script
       run: python mappying_terraform.py > example/policy.tf
+      env:
+        SYSDIG_API_KEY: ${{ secrets.SYSDIG_API_KEY }}
 
     # Runs a set of commands using the runners shell
     - name: Run terraform validate and plan to check the format
