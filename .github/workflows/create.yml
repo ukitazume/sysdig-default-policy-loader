@@ -41,6 +41,7 @@ jobs:
         tar -xvf terraform-provider-sysdig-linux-amd64.tar.gz
     - name: Run terraform validate and plan to check the format
       run: |
+        terraform providers
         terraform init
         terraform validate
       working-directory: example
