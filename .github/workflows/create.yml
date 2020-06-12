@@ -41,6 +41,6 @@ jobs:
     - name: Run terraform validate and plan to check the format
       run: |
         terraform providers
-        terraform init
+        terraform init -plugin-dir=${TERRAFORM_CLI_PATH}
         terraform validate
       working-directory: example
