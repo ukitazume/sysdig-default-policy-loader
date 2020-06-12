@@ -36,8 +36,8 @@ jobs:
     - name: Run terraform validate and plan to check the format
       run: |
         wget https://github.com/draios/terraform-provider-sysdig/releases/download/v0.3.0/terraform-provider-sysdig-linux-amd64.tar.gz
-        tar -xvf terraform-provider-sysdig-linux-amd64.tar.gz && mkdir -p .terraform/plugins/ && mv terraform-provider-sysdig_v0.3.0 .terraform/plugins/
-        ls -alF .terraform/plugins/
+        tar -xvf terraform-provider-sysdig-linux-amd64.tar.gz && mkdir -p $HOME/.terraform.d/plugins && mv terraform-provider-sysdig_v0.3.0 $HOME/.terraform.d/plugins
+        ls -alF $HOME/.terraform.d/plugins
         terraform init
         terraform validate
       working-directory: example
