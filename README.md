@@ -13,7 +13,7 @@ Get the policy.tf
 
 Edit the file as you like
 
-`vim policy.tf
+like `vim policy.tf`
 
 Apply to your Sysdig account
 
