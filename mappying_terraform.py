@@ -11,6 +11,7 @@ resource "sysdig_secure_policy" "$name_id" {
   name        = "$name"
   description = "$description"
   enabled     = $enabled
+  type        = "$type"
   severity    = $severity
   scope       = ""
   rule_names  = $ruleNames
